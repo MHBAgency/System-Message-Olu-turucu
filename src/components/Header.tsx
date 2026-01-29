@@ -126,7 +126,7 @@ export const Header = () => {
             {/* Component Library Modal */}
             {showComponentLibrary && (
                 <ComponentLibrary
-                    onInsert={(content) => {/* Will be handled in PromptPanel */ }}
+                    onInsert={() => {/* Will be handled in PromptPanel */ }}
                     onClose={() => setShowComponentLibrary(false)}
                 />
             )}

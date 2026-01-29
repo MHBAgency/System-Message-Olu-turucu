@@ -1,6 +1,7 @@
+```typescript
 import { ThumbsUp, ThumbsDown, MessageSquare } from 'lucide-react';
 import { useState } from 'react';
-import { useStore, Message } from '../store';
+import { useStore, type Message } from '../store';
 import { optimizePrompt } from '../services/ai';
 
 interface MessageItemProps {
@@ -61,11 +62,12 @@ export const MessageItem = ({ message }: MessageItemProps) => {
     const isUser = message.role === 'user';
 
     return (
-        <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} animate-fade-in`}>
-            <div className={`max-w-[80%] ${isUser ? 'order-2' : 'order-1'}`}>
+        <div className={`flex ${ isUser ? 'justify-end' : 'justify-start' } animate - fade -in `}>
+            <div className={`max - w - [80 %] ${ isUser ? 'order-2' : 'order-1' } `}>
                 <div
-                    className={`px-4 py-3 rounded-lg ${isUser ? 'message-user' : 'message-ai'
-                        }`}
+                    className={`px - 4 py - 3 rounded - lg ${
+    isUser ? 'message-user' : 'message-ai'
+} `}
                 >
                     <p className="whitespace-pre-wrap">{message.content}</p>
                 </div>
@@ -75,16 +77,18 @@ export const MessageItem = ({ message }: MessageItemProps) => {
                     <div className="flex items-center gap-2 mt-2">
                         <button
                             onClick={() => setMessageFeedback(message.id, 'good')}
-                            className={`p-1.5 rounded hover:bg-gray-800 transition-colors ${message.feedback === 'good' ? 'text-green-500' : 'text-gray-500'
-                                }`}
+                            className={`p - 1.5 rounded hover: bg - gray - 800 transition - colors ${
+    message.feedback === 'good' ? 'text-green-500' : 'text-gray-500'
+} `}
                             title="İyi yanıt"
                         >
                             <ThumbsUp size={16} />
                         </button>
                         <button
                             onClick={handleBadFeedback}
-                            className={`p-1.5 rounded hover:bg-gray-800 transition-colors ${message.feedback === 'bad' ? 'text-red-500' : 'text-gray-500'
-                                }`}
+                            className={`p - 1.5 rounded hover: bg - gray - 800 transition - colors ${
+    message.feedback === 'bad' ? 'text-red-500' : 'text-gray-500'
+} `}
                             title="Kötü yanıt"
                         >
                             <ThumbsDown size={16} />

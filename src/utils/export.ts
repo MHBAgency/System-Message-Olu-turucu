@@ -1,4 +1,4 @@
-import { Message, PromptVersion } from '../store';
+import type { Message, PromptVersion } from '../store';
 
 // Export current prompt as Markdown
 export const exportAsMarkdown = (

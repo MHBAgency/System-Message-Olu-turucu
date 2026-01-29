@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Save, Copy, CheckCircle, History, Sparkles, X, Check, Download, ChevronDown, Award, Layers } from 'lucide-react';
+import { Save, Copy, History, Sparkles, X, Check, Download, ChevronDown, Award } from 'lucide-react';
 import { useStore } from '../store';
 import { downloadMarkdown, downloadJSON, downloadN8NFormat } from '../utils/export';
 import { SmartAnalyzer } from './SmartAnalyzer';
-import { ComponentLibrary } from './ComponentLibrary';
 import { PromptOrganizer } from './PromptOrganizer';
 
 const ExportDropdown = () => {
@@ -134,9 +133,6 @@ export const PromptPanel = () => {
         clearMessages(); // Clear chat when reverting
     };
 
-    const handleComponentInsert = (content: string) => {
-        setEditedPrompt(prev => prev + content);
-    };
 
     const isModified = editedPrompt !== currentPrompt;
     const charCount = editedPrompt.length;

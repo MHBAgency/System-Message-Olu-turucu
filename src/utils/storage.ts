@@ -1,4 +1,4 @@
-import { Message, PromptVersion } from '../store';
+import type { Message, PromptVersion } from '../store';
 
 const STORAGE_KEYS = {
     API_KEY: 'system-prompt-dev-api-key',

@@ -9,7 +9,7 @@ import {
     loadMessages,
     loadPromptVersions
 } from './utils/storage';
-import { KnowledgeFile } from './types/knowledge';
+import type { KnowledgeFile } from './types/knowledge';
 import { saveKnowledgeFiles, loadKnowledgeFiles } from './utils/knowledgeStorage';
 
 export interface Message {

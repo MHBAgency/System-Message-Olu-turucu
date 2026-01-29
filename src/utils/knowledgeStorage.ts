@@ -1,4 +1,4 @@
-import { KnowledgeFile } from '../types/knowledge';
+import type { KnowledgeFile } from '../types/knowledge';
 
 const STORAGE_KEY = 'system-prompt-dev-knowledge-base';
 
