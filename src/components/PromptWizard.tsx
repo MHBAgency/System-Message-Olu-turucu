@@ -5,7 +5,7 @@ import {
 } from 'lucide-react'; // CheckCircle is used here
 import { useStore } from '../store';
 import { INDUSTRY_TEMPLATES, BOT_TYPES, TONE_OPTIONS, PLATFORM_OPTIONS, FEATURE_OPTIONS } from '../constants/industryTemplates';
-import { generateWizardPrompt, WizardState } from '../services/promptGeneration';
+import { generateWizardPrompt, type WizardState } from '../services/promptGenerator';
 
 interface PromptWizardProps {
     onClose: () => void;
@@ -103,8 +103,8 @@ export const PromptWizard = ({ onClose }: PromptWizardProps) => {
                                         onClick={() => step > s.id && setStep(s.id)}
                                     >
                                         <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all ${step === s.id ? 'bg-blue-600 border-blue-600 params-glow text-white' :
-                                                step > s.id ? 'bg-blue-900/50 border-blue-600 text-blue-400' :
-                                                    'bg-gray-900 border-gray-700 text-gray-600'
+                                            step > s.id ? 'bg-blue-900/50 border-blue-600 text-blue-400' :
+                                                'bg-gray-900 border-gray-700 text-gray-600'
                                             }`}>
                                             <s.icon size={14} />
                                         </div>
@@ -129,8 +129,8 @@ export const PromptWizard = ({ onClose }: PromptWizardProps) => {
                                                 key={ind.id}
                                                 onClick={() => setSelections({ ...selections, industry: ind.id })}
                                                 className={`p-4 rounded-xl border text-left transition-all hover:scale-[1.02] ${selections.industry === ind.id
-                                                        ? 'bg-blue-600/20 border-blue-500 shadow-lg shadow-blue-500/20'
-                                                        : 'bg-gray-800/50 border-gray-700 hover:border-gray-600'
+                                                    ? 'bg-blue-600/20 border-blue-500 shadow-lg shadow-blue-500/20'
+                                                    : 'bg-gray-800/50 border-gray-700 hover:border-gray-600'
                                                     }`}
                                             >
                                                 <div className="text-3xl mb-3">{ind.icon}</div>
@@ -152,8 +152,8 @@ export const PromptWizard = ({ onClose }: PromptWizardProps) => {
                                                 key={type.id}
                                                 onClick={() => setSelections({ ...selections, botType: type.id })}
                                                 className={`p-4 rounded-xl border text-left transition-all hover:scale-[1.02] ${selections.botType === type.id
-                                                        ? 'bg-purple-600/20 border-purple-500 shadow-lg shadow-purple-500/20'
-                                                        : 'bg-gray-800/50 border-gray-700 hover:border-gray-600'
+                                                    ? 'bg-purple-600/20 border-purple-500 shadow-lg shadow-purple-500/20'
+                                                    : 'bg-gray-800/50 border-gray-700 hover:border-gray-600'
                                                     }`}
                                             >
                                                 <div className="text-3xl mb-3">{type.icon}</div>
@@ -176,8 +176,8 @@ export const PromptWizard = ({ onClose }: PromptWizardProps) => {
                                                 key={tone.id}
                                                 onClick={() => setSelections({ ...selections, tone: tone.id })}
                                                 className={`p-4 rounded-xl border text-left transition-all ${selections.tone === tone.id
-                                                        ? 'bg-green-600/20 border-green-500 ring-1 ring-green-500'
-                                                        : 'bg-gray-800/50 border-gray-700'
+                                                    ? 'bg-green-600/20 border-green-500 ring-1 ring-green-500'
+                                                    : 'bg-gray-800/50 border-gray-700'
                                                     }`}
                                             >
                                                 <div className="flex items-center gap-3 mb-2">
@@ -197,8 +197,8 @@ export const PromptWizard = ({ onClose }: PromptWizardProps) => {
                                                     key={plat.id}
                                                     onClick={() => toggleSelection('platforms', plat.id)}
                                                     className={`px-4 py-2 rounded-full border text-sm transition-all flex items-center gap-2 ${selections.platforms.includes(plat.id)
-                                                            ? 'bg-blue-600 border-blue-500 text-white'
-                                                            : 'bg-gray-800 border-gray-700 text-gray-400 hover:border-gray-600'
+                                                        ? 'bg-blue-600 border-blue-500 text-white'
+                                                        : 'bg-gray-800 border-gray-700 text-gray-400 hover:border-gray-600'
                                                         }`}
                                                 >
                                                     <span>{plat.icon}</span>
@@ -221,13 +221,13 @@ export const PromptWizard = ({ onClose }: PromptWizardProps) => {
                                                 key={feat.id}
                                                 onClick={() => toggleSelection('features', feat.id)}
                                                 className={`p-4 rounded-xl border text-left transition-all flex items-start gap-4 ${selections.features.includes(feat.id)
-                                                        ? 'bg-indigo-600/20 border-indigo-500'
-                                                        : 'bg-gray-800/50 border-gray-700 hover:border-gray-600'
+                                                    ? 'bg-indigo-600/20 border-indigo-500'
+                                                    : 'bg-gray-800/50 border-gray-700 hover:border-gray-600'
                                                     }`}
                                             >
                                                 <div className={`mt-1 w-5 h-5 rounded-full border flex items-center justify-center ${selections.features.includes(feat.id)
-                                                        ? 'bg-indigo-500 border-indigo-500'
-                                                        : 'border-gray-600'
+                                                    ? 'bg-indigo-500 border-indigo-500'
+                                                    : 'border-gray-600'
                                                     }`}>
                                                     {selections.features.includes(feat.id) && <CheckCircle size={12} className="text-white" />}
                                                 </div>
@@ -320,10 +320,10 @@ export const PromptWizard = ({ onClose }: PromptWizardProps) => {
                                 <div className="space-y-4 animate-fadeIn">
                                     {previewPrompt.split('\n').map((line, i) => (
                                         <div key={i} className={`${line.startsWith('# ') ? 'text-2xl font-bold text-blue-400 pb-2 border-b border-gray-800 mt-4' :
-                                                line.startsWith('## ') ? 'text-xl font-bold text-purple-400 mt-6 mb-2' :
-                                                    line.startsWith('- ') ? 'text-gray-300 pl-4' :
-                                                        line.startsWith('**') ? 'text-white' :
-                                                            'text-gray-400'
+                                            line.startsWith('## ') ? 'text-xl font-bold text-purple-400 mt-6 mb-2' :
+                                                line.startsWith('- ') ? 'text-gray-300 pl-4' :
+                                                    line.startsWith('**') ? 'text-white' :
+                                                        'text-gray-400'
                                             }`}>
                                             {line}
                                         </div>

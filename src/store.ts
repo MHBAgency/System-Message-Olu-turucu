@@ -60,7 +60,6 @@ interface AppState {
 }
 
 // Load initial state from localStorage
-const initialApiKey = loadApiKey() || 'AIzaSyD29LJEi8YGBPpfOG0bvuV_po_b6DVbccA';
 const initialPrompt = loadCurrentPrompt() || `Sen yardımcı bir AI asistanısın. Kullanıcının sorularını net ve açıklayıcı bir şekilde yanıtla.`;
 const initialMessages = loadMessages();
 const initialVersions = loadPromptVersions();

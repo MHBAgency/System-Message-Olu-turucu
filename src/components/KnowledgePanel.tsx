@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Upload, FileText, Trash2, X, Loader2, BookOpen } from 'lucide-react';
 import { useStore } from '../store';
-import { KnowledgeFile, getFileType, formatFileSize, FILE_SIZE_LIMIT } from '../types/knowledge';
+import type { KnowledgeFile } from '../types/knowledge';
+import { getFileType, formatFileSize, FILE_SIZE_LIMIT } from '../types/knowledge';
 import { parseFile } from '../utils/fileParsers';
 
 interface KnowledgePanelProps {

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { X, Sparkles, AlertTriangle, CheckCircle2, Loader2, Zap, ChevronDown, ChevronUp, Play } from 'lucide-react';
-import type { analyzePromptSmart, SmartAnalysisResult, Suggestion } from '../services/smartAnalyzer';
+import { analyzePromptSmart } from '../services/smartAnalyzer';
+import type { SmartAnalysisResult, Suggestion } from '../services/smartAnalyzer';
 
 interface SmartAnalyzerProps {
     prompt: string;

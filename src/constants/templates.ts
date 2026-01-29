@@ -6,6 +6,14 @@ export interface PromptTemplate {
     prompt: string;
     icon: string;
 }
+export interface GeneratorAnswers {
+    botType: string;
+    industry: string;
+    mainGoals: string;
+    tone: string;
+    constraints: string;
+    additionalInfo: string;
+}
 
 export const TEMPLATE_CATEGORIES = [
     { id: 'ecommerce', name: 'E-commerce', icon: '🛒' },

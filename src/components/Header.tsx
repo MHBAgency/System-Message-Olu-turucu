@@ -1,4 +1,4 @@
-import { Key, FileText, Wand2, Database, Layers } from 'lucide-react';
+import { Key, Wand2, Database, Layers } from 'lucide-react';
 import { useStore } from '../store';
 import { useState } from 'react';
 import { TemplateModal } from './TemplateModal';
@@ -7,7 +7,7 @@ import { KnowledgePanel } from './KnowledgePanel';
 import { ComponentLibrary } from './ComponentLibrary';
 
 export const Header = () => {
-    const { apiKey, setApiKey, setPrompt, clearMessages, currentPrompt } = useStore();
+    const { apiKey, setApiKey } = useStore();
     const [showTemplates, setShowTemplates] = useState(false);
     const [showWizard, setShowWizard] = useState(false);
     const [showKnowledgeBase, setShowKnowledgeBase] = useState(false);
@@ -75,12 +75,16 @@ export const Header = () => {
                 </div>
             </header>
 
-            <TemplateModal isOpen={showTemplates} onClose={() => setShowTemplates(false)} />
-            <PromptGenerator
-                onGenerated={handleGeneratedPrompt}
-                onClose={() => setShowGenerator(false)}
-                isOpen={showGenerator}
-            />
+            {showTemplates && (
+                <TemplateModal
+                    onClose={() => setShowTemplates(false)}
+                    isOpen={showTemplates}
+                />
+            )}
+
+            {showWizard && (
+                <PromptWizard onClose={() => setShowWizard(false)} />
+            )}
 
             {/* Knowledge Base Modal */}
             {showKnowledgeBase && (

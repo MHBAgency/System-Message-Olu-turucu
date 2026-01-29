@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { X, Search, Plus, Layers } from 'lucide-react';
-import { PROMPT_COMPONENTS, getComponentsByCategory, getCategoryLabel, PromptComponent } from '../constants/promptComponents';
+import { getComponentsByCategory, getCategoryLabel } from '../constants/promptComponents';
+import type { PromptComponent } from '../constants/promptComponents';
 
 interface ComponentLibraryProps {
     onInsert: (content: string) => void;
@@ -70,8 +71,8 @@ export const ComponentLibrary = ({ onInsert, onClose }: ComponentLibraryProps) =
                                         key={category}
                                         onClick={() => setSelectedCategory(category)}
                                         className={`w-full text-left px-4 py-3 rounded-lg transition-colors mb-1 ${selectedCategory === category
-                                                ? 'bg-blue-600 text-white'
-                                                : 'hover:bg-gray-800 text-gray-300'
+                                            ? 'bg-blue-600 text-white'
+                                            : 'hover:bg-gray-800 text-gray-300'
                                             }`}
                                     >
                                         <div className="font-medium text-sm">{getCategoryLabel(category)}</div>

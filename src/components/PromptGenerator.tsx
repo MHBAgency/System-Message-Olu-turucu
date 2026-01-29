@@ -1,4 +1,3 @@
-```
 import { useState } from 'react';
 import { X, Wand2, ArrowRight, ArrowLeft, Loader2, CheckCircle } from 'lucide-react';
 import type { GeneratorAnswers } from '../constants/templates';
@@ -49,7 +48,7 @@ export const PromptGenerator = ({ onGenerated, onClose, isOpen }: PromptGenerato
             setStep(totalSteps + 1); // Go to preview step
         } catch (error) {
             console.error('Generation error:', error);
-            alert(`Hata: ${ error instanceof Error ? error.message : 'Bilinmeyen hata' } `);
+            alert(`Hata: ${error instanceof Error ? error.message : 'Bilinmeyen hata'} `);
         } finally {
             setIsGenerating(false);
         }
@@ -95,7 +94,7 @@ export const PromptGenerator = ({ onGenerated, onClose, isOpen }: PromptGenerato
                             <div className="w-full bg-gray-700 rounded-full h-2">
                                 <div
                                     className="bg-green-500 h-2 rounded-full transition-all duration-300"
-                                    style={{ width: `${ progress }% ` }}
+                                    style={{ width: `${progress}% ` }}
                                 />
                             </div>
                         </div>

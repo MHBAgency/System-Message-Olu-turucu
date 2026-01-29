@@ -1,4 +1,4 @@
-import { INDUSTRY_TEMPLATES, BOT_TYPES, TONE_OPTIONS, PLATFORM_OPTIONS, FEATURE_OPTIONS, IndustryTemplate } from '../constants/industryTemplates';
+import { INDUSTRY_TEMPLATES, BOT_TYPES, TONE_OPTIONS, PLATFORM_OPTIONS } from '../constants/industryTemplates';
 
 export interface WizardState {
     industry: string;
