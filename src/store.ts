@@ -132,10 +132,10 @@ export const useStore = create<AppState>((set) => ({
         }),
 
     // API key
-    apiKey: initialApiKey,
-    setApiKey: (key) => {
+    apiKey: loadApiKey() || import.meta.env.VITE_GEMINI_API_KEY || '',
+    setApiKey: (key: string) => {
+        set({ apiKey: key });
         saveApiKey(key);
-        return set({ apiKey: key });
     },
 
     // UI state

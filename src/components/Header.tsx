@@ -2,30 +2,16 @@ import { Key, FileText, Wand2, Database, Layers } from 'lucide-react';
 import { useStore } from '../store';
 import { useState } from 'react';
 import { TemplateModal } from './TemplateModal';
-import { PromptGenerator } from './PromptGenerator';
+import { PromptWizard } from './PromptWizard';
 import { KnowledgePanel } from './KnowledgePanel';
 import { ComponentLibrary } from './ComponentLibrary';
 
 export const Header = () => {
     const { apiKey, setApiKey, setPrompt, clearMessages, currentPrompt } = useStore();
-    const [showApiInput, setShowApiInput] = useState(!apiKey);
-    const [tempKey, setTempKey] = useState('');
     const [showTemplates, setShowTemplates] = useState(false);
-    const [showGenerator, setShowGenerator] = useState(false);
+    const [showWizard, setShowWizard] = useState(false);
     const [showKnowledgeBase, setShowKnowledgeBase] = useState(false);
     const [showComponentLibrary, setShowComponentLibrary] = useState(false);
-
-    const handleSaveKey = () => {
-        if (tempKey.trim()) {
-            setApiKey(tempKey.trim());
-            setShowApiInput(false);
-        }
-    };
-
-    const handleGeneratedPrompt = (prompt: string) => {
-        setPrompt(prompt, 'AI Generated');
-        clearMessages();
-    };
 
     return (
         <>
@@ -42,12 +28,12 @@ export const Header = () => {
 
                     <div className="flex items-center gap-3">
                         <button
-                            onClick={() => setShowGenerator(true)}
+                            onClick={() => setShowWizard(true)}
                             className="group flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 rounded-lg transition-all shadow-lg hover:shadow-xl hover:shadow-green-600/30 hover:scale-105"
-                            title="AI Prompt Generator"
+                            title="AI Prompt Wizard"
                         >
                             <Wand2 size={18} className="group-hover:rotate-12 transition-transform" />
-                            <span className="text-sm font-medium">Generate Prompt</span>
+                            <span className="text-sm font-medium">Sihirbaz ile Oluştur</span>
                         </button>
 
                         <button
@@ -61,48 +47,30 @@ export const Header = () => {
 
                         <button
                             onClick={() => setShowComponentLibrary(true)}
-                            className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-700 hover:to-indigo-600 rounded-lg transition-all shadow-md hover:shadow-lg hover:shadow-indigo-600/20"
-                            title="Component Library"
+                            className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 rounded-lg transition-all shadow-md hover:shadow-lg hover:shadow-purple-600/20"
+                            title="Templates"
                         >
                             <Layers size={18} />
-                            <span className="text-sm font-medium">Components</span>
+                            <span className="text-sm font-medium">Şablonlar</span>
                         </button>
 
-                        <button
-                            onClick={() => setShowTemplates(true)}
-                            className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 rounded-lg transition-all shadow-md hover:shadow-lg hover:shadow-purple-600/20"
-                            title="Prompt Templates"
-                        >
-                            <FileText size={18} />
-                            <span className="text-sm font-medium">Templates</span>
-                        </button>
+                        <div className="h-8 w-px bg-gray-700 mx-2" />
 
-                        {apiKey && !showApiInput ? (
-                            <button
-                                onClick={() => setShowApiInput(true)}
-                                className="flex items-center gap-2 px-4 py-2.5 bg-gray-800/80 hover:bg-gray-700 rounded-lg transition-all border border-gray-700/50"
-                            >
-                                <Key size={18} />
-                                <span className="text-sm">API Key: ••••••</span>
-                            </button>
-                        ) : (
-                            <div className="flex items-center gap-2">
+                        <div className="relative group">
+                            <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                            <div className="relative flex items-center bg-gray-900 rounded-lg p-1">
+                                <div className="px-3 py-1.5 border-r border-gray-700">
+                                    <Key size={14} className="text-gray-400" />
+                                </div>
                                 <input
                                     type="password"
-                                    value={tempKey}
-                                    onChange={(e) => setTempKey(e.target.value)}
-                                    placeholder="Gemini API Key"
-                                    className="px-3 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 text-sm transition-all"
-                                    onKeyDown={(e) => e.key === 'Enter' && handleSaveKey()}
+                                    value={apiKey}
+                                    onChange={(e) => setApiKey(e.target.value)}
+                                    placeholder="Gemini API Key..."
+                                    className="bg-transparent border-none text-white text-sm focus:ring-0 w-40 placeholder-gray-600"
                                 />
-                                <button
-                                    onClick={handleSaveKey}
-                                    className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 rounded-lg text-sm font-medium transition-all shadow-md hover:shadow-lg"
-                                >
-                                    Kaydet
-                                </button>
                             </div>
-                        )}
+                        </div>
                     </div>
                 </div>
             </header>
